@@ -1,0 +1,19 @@
+organic_waste_location:
+  x_origin: 15
+  y_origin: 5
+  z_origin: 0
+aqueous_waste_location:
+  x_origin: 44
+  y_origin: 32
+  z_origin: 0
+main_20mL_rack:
+  num_x: 3
+  num_y: 2
+  x_origin: 166.5
+  y_origin: 68
+  z_origin: 0
+  x_offset: 37.5
+  y_offset: -36
+
+  #Note: These locations may need to be edited
+  
