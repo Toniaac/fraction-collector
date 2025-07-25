@@ -10,7 +10,7 @@ class FractionCollector:
     valve_controller = None
     mux_id = None
 
-    def __init__(self, sensor_id=1, runze_valve_port='COM8', runze_valve_address=0, runze_valve_num_port=10, collection_num=3, waste_num=6):
+    def __init__(self, sensor_id=1, runze_valve_port='COM9', runze_valve_address=0, runze_valve_num_port=10, collection_num=3, waste_num=6):
         self.counter = DripCounter(sensor_id=sensor_id)
         self.cnc_machine = CNC_Machine()
         self.valve = RunzeValve(com_port=runze_valve_port, address=runze_valve_address, num_port=runze_valve_num_port)
