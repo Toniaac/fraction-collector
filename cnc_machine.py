@@ -8,7 +8,7 @@ import yaml
 class CNC_Machine():
     #All of this data could also be stored in a yaml file
     BAUD_RATE = 115200
-    SERIAL_PORT = "COM3" #Serial Port you are using
+    SERIAL_PORT = "COM6" #Serial Port you are using
     X_LOW_BOUND = 0
     X_HIGH_BOUND = 270 #Note this bound wasn't working upstairs, but it is usually the boundary for the small CNC machine
     Y_LOW_BOUND = 0
