@@ -16,6 +16,7 @@ class FractionCollector:
         self.valve = RunzeValve(com_port=runze_valve_port, address=runze_valve_address, num_port=runze_valve_num_port)
         self.collection_num = collection_num
         self.waste_num = waste_num
+        self.move_to_waste()
 
     def collect_fraction(self, threshold, location, location_index, rinse_time = 10, timeout=None, poll_interval=0.1):
         self.move_to_waste()
@@ -28,7 +29,7 @@ class FractionCollector:
 
         # Move to the vial
         self.cnc_machine.move_to_location(location, location_index, safe=False)
-        self.cnc_machine.move_to_point(z=-15)
+        self.cnc_machine.move_to_point(z=-12)
         # Collect fraction
         self.set_valve_state(self.collection_num)  # Set to collection port
         print(f"Collecting fraction at {location} (index {location_index}) until {threshold} drops are counted...\n")
