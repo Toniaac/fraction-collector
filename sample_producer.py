@@ -25,7 +25,7 @@ class SampleProducer:
         for count in range(1, self.number + 1):
             if self.stop_event.is_set():
                 break
-            self.valve.set_current_port(count + 1)
+            self.valve.set_current_port(count + 2)
             time.sleep(self.delay)  # time for sample to flow
             sample = f"{count}"
             print(f"Sample {sample} is ready to collect!")

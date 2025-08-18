@@ -18,23 +18,23 @@ class FractionCollector:
         self.waste_num = waste_num
         self.move_to_waste()
 
-    def collect_fraction(self, threshold, location, location_index, rinse_time = 10, timeout=None, poll_interval=0.1):
+    def collect_fraction(self, threshold, location, location_index, rinse_drop = 20, timeout=None, poll_interval=0.1):
         self.move_to_waste()
         # Rinse collection tubing
+        print(f"Rinsing collection tubing for {rinse_drop} drops...\n")
+        self.counter.reset()
         self.set_valve_state(self.collection_num)  # Set to collection port
-        print(f"Rinsing collection tubing for {rinse_time} seconds...\n")
-        time.sleep(rinse_time)  # To be replaced with tubing rinse time
+        self.counter.wait_for_drops(rinse_drop, timeout=timeout, poll_interval=poll_interval)
         self.set_valve_state(self.waste_num)  # Set to waste port
         print("Rinsing complete.\n")
-
         # Move to the vial
         self.cnc_machine.move_to_location(location, location_index, safe=False)
         self.cnc_machine.move_to_point(z=-12)
-        # Collect fraction
-        self.set_valve_state(self.collection_num)  # Set to collection port
         print(f"Collecting fraction at {location} (index {location_index}) until {threshold} drops are counted...\n")
         # Start the counter
         self.counter.reset()
+        # Collect fraction
+        self.set_valve_state(self.collection_num)  # Set to collection port
         print(f"Starting fraction collection at {location} (index {location_index})...\n")
         if not self.counter.wait_for_drops(threshold, timeout=timeout, poll_interval=poll_interval):
             print(f"Failed to collect enough drops at {location} (index {location_index})...\n")
@@ -54,5 +54,6 @@ class FractionCollector:
     def move_to_waste(self, location = "cnc_waste_location", location_index=0, safe=False):
         """Close valve and move to the CNC waste location."""
         self.set_valve_state(self.waste_num)
+        self.cnc_machine.move_to_point(z=0)
         self.cnc_machine.move_to_location(location, location_index, safe=safe)
         # self.cnc_machine.move_to_point(z=-35)
