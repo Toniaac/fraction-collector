@@ -28,8 +28,7 @@ class FractionCollector:
         self.set_valve_state(self.waste_num)  # Set to waste port
         print("Rinsing complete.\n")
         # Move to the vial
-        self.cnc_machine.move_to_location(location, location_index, safe=False)
-        self.cnc_machine.move_to_point(z=-12)
+        self.cnc_machine.move_to_location(location, location_index, safe=True)
         print(f"Collecting fraction at {location} (index {location_index}) until {threshold} drops are counted...\n")
         # Start the counter
         self.counter.reset()
@@ -51,9 +50,8 @@ class FractionCollector:
         """Set the valve to a specific port."""
         self.valve.set_current_port(port)
 
-    def move_to_waste(self, location = "cnc_waste_location", location_index=0, safe=False):
+    def move_to_waste(self, location = "cnc_waste_location", location_index=0, safe=True):
         """Close valve and move to the CNC waste location."""
         self.set_valve_state(self.waste_num)
-        self.cnc_machine.move_to_point(z=0)
         self.cnc_machine.move_to_location(location, location_index, safe=safe)
         # self.cnc_machine.move_to_point(z=-35)

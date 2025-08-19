@@ -77,9 +77,12 @@ class CNC_Machine():
     #Command the CNC machine to move to its max height then to an xy location then down to the target z
     def move_to_point_safe(self,x,y,z,speed=3000,gtype="G1"):
         if self.coordinates_within_bounds(x,y,z):
-            gcode = self.get_gcode_path_to_point(x=None,y=self.Y_HIGH_BOUND,z=self.Z_HIGH_BOUND,speed=speed,gtype=gtype) #Max height
-            gcode += self.get_gcode_path_to_point(x=x,y=self.Y_HIGH_BOUND,z=self.Z_HIGH_BOUND,speed=speed,gtype=gtype) #xy travel
-            gcode += self.get_gcode_path_to_point(x=None,y=y,z=z,speed=speed,gtype=gtype) #Down
+            #gcode = self.get_gcode_path_to_point(x=None,y=self.Y_HIGH_BOUND,z=self.Z_HIGH_BOUND,speed=speed,gtype=gtype) #Max height
+            #gcode += self.get_gcode_path_to_point(x=x,y=self.Y_HIGH_BOUND,z=self.Z_HIGH_BOUND,speed=speed,gtype=gtype) #xy travel
+            #gcode += self.get_gcode_path_to_point(x=None,y=y,z=z,speed=speed,gtype=gtype) #Down
+            gcode = self.get_gcode_path_to_point(x=None,y=None,z=self.Z_HIGH_BOUND,speed=speed,gtype=gtype) #Max height
+            gcode += self.get_gcode_path_to_point(x=x,y=y,z=self.Z_HIGH_BOUND,speed=speed,gtype=gtype) #xy travel
+            gcode += self.get_gcode_path_to_point(x=None,y=None,z=z,speed=speed,gtype=gtype) #Down
             print(f"Moved safely To (X{x}, Y{y}, Z{z}): ", self.follow_gcode_path(gcode))
         else:
             print(f"Cannot move to (X{x}, Y{y}, Z{z}), coordinates not within bounds")

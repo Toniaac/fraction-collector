@@ -29,7 +29,7 @@ class DripCounter:
         return None
 
     def wait_for_drops(self, threshold, timeout=None, poll_interval=0.1):
-        self.reset()
+        #self.reset()
         start_time = time.time()
         print(f"Waiting for {threshold} drops...")
 

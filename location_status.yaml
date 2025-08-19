@@ -19,12 +19,21 @@ well_plate_location: #48-well locations (index 0 through 47)
   num_y: 8
   x_origin: 35.5
   y_origin: 129.5
-  z_origin: 0
+  z_origin: -12
   x_offset: 14
   y_offset: -14
   #Note: These locations may need to be edited
 cnc_waste_location: #Top right edge of the 48-well plate
-  x_origin: 128 
-  y_origin: 100
+  x_origin: 174
+  y_origin: 20
   z_origin: 0
+
+96_well_plate_location: 
+  num_x: 8
+  num_y: 12
+  x_origin: 38
+  y_origin: 131
+  z_origin: -30
+  x_offset: 9
+  y_offset: -9
   
