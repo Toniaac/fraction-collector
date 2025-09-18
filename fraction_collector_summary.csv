@@ -1,0 +1,8 @@
+Condition,Median Drop Volume (µL),Drop CV (%),Counting Accuracy R²
+volume_accuracy_01ml_per_min,0.0,,-1.7878569616627296
+volume_accuracy_05ml_per_min,0.0,,-2.82800762519255
+volume_accuracy_1ml_per_min,0.0,,-3.0782277795515185
+volume_accuracy_2ml_per_min,0.0,,-2.140461034449387
+volume_accuracy_3ml_per_min,0.0,,-3.020260144916902
+volume_accuracy_4ml_per_min,0.0,,-3.06179439161059
+volume_accuracy_5ml_per_min,0.0,,-3.1449453397849503
