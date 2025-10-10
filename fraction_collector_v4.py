@@ -18,7 +18,7 @@ class FractionCollector:
         self.waste_num = waste_num
         self.move_to_waste()
 
-    def collect_fraction(self, threshold, location, location_index, rinse_drop = 20, timeout=60, poll_interval=20):
+    def collect_fraction(self, threshold, location, location_index, rinse_drop = 20, timeout=100, poll_interval=20):
         self.move_to_waste()
         # Rinse collection tubing
         print(f"Rinsing collection tubing for {rinse_drop} drops...\n")
@@ -35,7 +35,7 @@ class FractionCollector:
         if not self.counter.wait_for_drops(threshold, timeout=timeout, poll_interval=poll_interval):
             print(f"Failed to collect enough drops at {location} (index {location_index})...\n")
             # If the threshold is not met, move to waste
-            self.set_valve_state(self.waste_num)  # Set to waste port
+            self.move_to_waste() 
             return False
         print(f"Fraction collection of {location} (index {location_index}) complete.\n")
 
