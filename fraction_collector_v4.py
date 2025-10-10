@@ -18,7 +18,7 @@ class FractionCollector:
         self.waste_num = waste_num
         self.move_to_waste()
 
-    def collect_fraction(self, threshold, location, location_index, rinse_drop = 20, timeout=100, poll_interval=20):
+    def collect_fraction(self, threshold, location, location_index, rinse_drop = 20, timeout=120, poll_interval=20):
         self.move_to_waste()
         # Rinse collection tubing
         print(f"Rinsing collection tubing for {rinse_drop} drops...\n")
